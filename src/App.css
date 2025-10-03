@@ -1,0 +1,408 @@
+/* Dashboard Styles */
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.dashboard-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0 20px;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-content h1 {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #1E6FFF, #8B5CF6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.role-badge {
+  background: #1E6FFF;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: #EF4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: #DC2626;
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.welcome-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.welcome-card h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1F2937;
+  margin-bottom: 10px;
+}
+
+.welcome-card p {
+  font-size: 18px;
+  color: #6B7280;
+  margin-bottom: 10px;
+}
+
+.dashboard-stats {
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: linear-gradient(45deg, #1E6FFF, #8B5CF6);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.stat-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Verification Status */
+.verification-status {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+.verification-status.pending {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #F59E0B;
+}
+
+.verification-status.approved {
+  background: #D1FAE5;
+  color: #065F46;
+  border: 1px solid #10B981;
+}
+
+.verification-status.rejected {
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #EF4444;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #6B7280;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Admin Dashboard Styles */
+.admin-dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.admin-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0 20px;
+}
+
+.admin-tabs {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-tabs button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.admin-tabs button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.admin-tabs button.active {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e3c72;
+}
+
+.admin-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.admin-content h2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stats-grid .stat-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.stats-grid .stat-card h3 {
+  font-size: 16px;
+  color: #6B7280;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.stats-grid .stat-number {
+  font-size: 36px;
+  font-weight: bold;
+  color: #1F2937;
+  margin-bottom: 5px;
+}
+
+.stats-grid .stat-subtitle {
+  font-size: 14px;
+  color: #9CA3AF;
+}
+
+/* Business Cards */
+.businesses-list {
+  display: grid;
+  gap: 20px;
+}
+
+.business-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.business-info h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1F2937;
+  margin-bottom: 10px;
+}
+
+.business-info p {
+  margin: 5px 0;
+  color: #6B7280;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 10px;
+}
+
+.status-badge.pending {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.status-badge.approved {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.status-badge.rejected {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.verification-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.approve-btn, .reject-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.approve-btn {
+  background: #10B981;
+  color: white;
+}
+
+.approve-btn:hover {
+  background: #059669;
+}
+
+.reject-btn {
+  background: #EF4444;
+  color: white;
+}
+
+.reject-btn:hover {
+  background: #DC2626;
+}
+
+/* Users Table */
+.users-table {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.users-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.users-table th {
+  background: #F9FAFB;
+  font-weight: 600;
+  color: #374151;
+}
+
+.users-table tr:hover {
+  background: #F9FAFB;
+}
+
+.role-badge.admin {
+  background: #6366F1;
+  color: white;
+}
+
+.role-badge.owner {
+  background: #8B5CF6;
+  color: white;
+}
+
+.role-badge.customer {
+  background: #10B981;
+  color: white;
+}
+
+.role-badge.rider {
+  background: #F59E0B;
+  color: white;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #6B7280;
+}
+
+.quick-actions {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.quick-actions h3 {
+  margin-bottom: 15px;
+  color: #1F2937;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.action-buttons button {
+  background: linear-gradient(45deg, #1E6FFF, #8B5CF6);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.action-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(30, 111, 255, 0.3);
+}
