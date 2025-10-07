@@ -34,28 +34,13 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   };
 
-  const login = async (email, password) => {
-    const response = await authAPI.login(email, password);
-    setToken(response.token);
-    setUser(response.user);
-    return response.user;
-  };
-
-  const register = async (userData) => {
-    const response = await authAPI.register(userData);
-    setToken(response.token);
-    setUser(response.user);
-    return response.user;
-  };
-
   const register = async (formData) => {
-  return registerService(formData);
-};
+    return registerService(formData);
+  };
 
-const login = async (formData) => {
-  return loginService(formData);
-};
-
+  const login = async (formData) => {
+    return loginService(formData);
+  };
 
   const logout = () => {
     removeToken();
