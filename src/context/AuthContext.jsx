@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { authAPI, getToken, setToken, removeToken } from '../services/auth';
+import { register as registerService, login as loginService } from '../services/auth';
 
 const AuthContext = createContext();
 
@@ -46,6 +47,15 @@ export const AuthProvider = ({ children }) => {
     setUser(response.user);
     return response.user;
   };
+
+  const register = async (formData) => {
+  return registerService(formData);
+};
+
+const login = async (formData) => {
+  return loginService(formData);
+};
+
 
   const logout = () => {
     removeToken();

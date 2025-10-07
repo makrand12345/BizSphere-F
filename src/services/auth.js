@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiRequest } from './api';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -45,5 +46,19 @@ export const getToken = () => {
 export const removeToken = () => {
   localStorage.removeItem('bizsphere_token');
 };
+
+export function register(data) {
+  return apiRequest('/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export function login(data) {
+  return apiRequest('/auth/login', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
 
 export default api;

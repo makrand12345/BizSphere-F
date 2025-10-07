@@ -142,7 +142,7 @@ const Register = () => {
         </form>
 
         <div className="auth-footer">
-          <p>Already have an account? <a href="/login">Sign in</a></p>
+          <p>Already have an account? <a href="https://biz-sphere-b.vercel.app">Sign in</a></p>
         </div>
       </div>
     </div>

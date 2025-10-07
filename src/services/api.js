@@ -1,21 +1,18 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const api = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Test backend connection
-export const testConnection = async () => {
-  try {
-    const response = await axios.get('http://localhost:5000/health');
-    return response.data;
-  } catch (error) {
-    console.error('Backend connection failed:', error);
-    return null;
+export async function apiRequest(endpoint, options = {}) {
+  const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+    ...options,
+  });
+  if (!res.ok) {
+    const error = await res.json();
+    throw error;
   }
-};
+  return res.json();
+}
