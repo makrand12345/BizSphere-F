@@ -8,8 +8,5 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    rollupOptions: {
-      external: [], // Remove any external dependencies if present
-    }
   }
 })

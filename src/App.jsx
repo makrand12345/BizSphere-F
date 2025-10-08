@@ -1,85 +1,91 @@
 import React, { useState, useEffect } from 'react';
-import { authAPI } from './services/auth';
 
 function App() {
-  const [connectionStatus, setConnectionStatus] = useState('Testing connection...');
-  const [backendHealth, setBackendHealth] = useState(null);
+  const [status, setStatus] = useState('Testing connection...');
+  const [health, setHealth] = useState(null);
 
   useEffect(() => {
-    testBackendConnection();
+    testConnection();
   }, []);
 
-  const testBackendConnection = async () => {
+  const testConnection = async () => {
     try {
       const response = await fetch('https://biz-sphere-b.vercel.app/api/health');
       const data = await response.json();
-      setBackendHealth(data);
-      setConnectionStatus('Connected to backend!');
+      setHealth(data);
+      setStatus('✅ Connected to backend!');
     } catch (error) {
-      setConnectionStatus('Failed to connect to backend');
-      console.error('Connection error:', error);
+      setStatus('❌ Failed to connect to backend: ' + error.message);
     }
   };
 
-  const handleRegister = async () => {
+  const testBackend = async () => {
     try {
-      const result = await authAPI.register({
-        name: 'Test User',
-        email: 'test@example.com',
-        password: 'password123'
-      });
-      console.log('Register result:', result);
-      alert('Registration successful!');
+      const response = await fetch('https://biz-sphere-b.vercel.app/api/test');
+      const data = await response.json();
+      alert('Backend test: ' + data.message);
     } catch (error) {
-      console.error('Registration error:', error);
-      alert('Registration failed: ' + error.message);
+      alert('Backend test failed: ' + error.message);
     }
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ padding: '20px', fontFamily: 'Arial', maxWidth: '800px', margin: '0 auto' }}>
       <h1>BizSphere Frontend</h1>
+      <p>Frontend: https://biz-sphere-f.vercel.app</p>
+      <p>Backend: https://biz-sphere-b.vercel.app</p>
       
       <div style={{ 
         padding: '15px', 
-        margin: '10px 0', 
-        backgroundColor: connectionStatus.includes('Connected') ? '#d4edda' : '#f8d7da',
-        border: '1px solid',
-        borderColor: connectionStatus.includes('Connected') ? '#c3e6cb' : '#f5c6cb',
-        borderRadius: '5px'
+        background: health ? '#e8f5e8' : '#ffe6e6',
+        border: '1px solid #ccc',
+        borderRadius: '5px',
+        margin: '20px 0'
       }}>
-        <h3>Connection Status</h3>
-        <p><strong>{connectionStatus}</strong></p>
-        {backendHealth && (
+        <h3>Connection Status: {status}</h3>
+        {health && (
           <div>
-            <p><strong>Backend:</strong> {backendHealth.backend}</p>
-            <p><strong>Database:</strong> {backendHealth.database}</p>
-            <p><strong>Timestamp:</strong> {backendHealth.timestamp}</p>
+            <p><strong>Backend:</strong> {health.backend}</p>
+            <p><strong>Database:</strong> {health.database}</p>
+            <p><strong>Timestamp:</strong> {new Date(health.timestamp).toLocaleString()}</p>
           </div>
         )}
       </div>
 
-      <div style={{ margin: '20px 0' }}>
-        <button 
-          onClick={handleRegister}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer'
-          }}
-        >
-          Test Registration
-        </button>
-      </div>
+      <button 
+        onClick={testBackend}
+        style={{
+          padding: '10px 20px',
+          backgroundColor: '#007bff',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          marginRight: '10px'
+        }}
+      >
+        Test Backend
+      </button>
+
+      <button 
+        onClick={testConnection}
+        style={{
+          padding: '10px 20px',
+          backgroundColor: '#28a745',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer'
+        }}
+      >
+        Refresh Status
+      </button>
 
       <div style={{ marginTop: '30px' }}>
-        <h3>Test Links:</h3>
+        <h3>Test these URLs directly:</h3>
         <ul>
-          <li><a href="https://biz-sphere-b.vercel.app/api/test" target="_blank" rel="noopener noreferrer">Backend Test Route</a></li>
-          <li><a href="https://biz-sphere-b.vercel.app/api/health" target="_blank" rel="noopener noreferrer">Backend Health Check</a></li>
+          <li><a href="https://biz-sphere-b.vercel.app/api/test" target="_blank" rel="noopener">Backend Test</a></li>
+          <li><a href="https://biz-sphere-b.vercel.app/api/health" target="_blank" rel="noopener">Backend Health</a></li>
         </ul>
       </div>
     </div>
