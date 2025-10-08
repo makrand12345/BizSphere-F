@@ -40,3 +40,7 @@ export const getToken = () => {
 export const removeToken = () => {
   localStorage.removeItem('bizsphere_token');
 };
+
+// Add default export for backward compatibility
+const api = { authAPI, setToken, getToken, removeToken };
+export default api;
