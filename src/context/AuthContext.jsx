@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { authAPI, getToken, setToken, removeToken } from '../services/auth';
-import { register as registerService, login as loginService } from '../services/auth';
 
 const AuthContext = createContext();
 
@@ -24,35 +23,49 @@ export const AuthProvider = ({ children }) => {
     const token = getToken();
     if (token) {
       try {
-        const { user } = await authAPI.getCurrentUser(token);
-        setUser(user);
+        const userData = await authAPI.getCurrentUser(token);
+        setUser(userData);
       } catch (error) {
-        removeToken();
         console.error('Auth check failed:', error);
+        removeToken();
       }
     }
     setLoading(false);
   };
 
-  const register = async (formData) => {
-    return registerService(formData);
+  const login = async (email, password) => {
+    try {
+      const data = await authAPI.login(email, password);
+      setToken(data.token);
+      setUser(data.user);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
   };
 
-  const login = async (formData) => {
-    return loginService(formData);
+  const register = async (userData) => {
+    try {
+      const data = await authAPI.register(userData);
+      setToken(data.token);
+      setUser(data.user);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
   };
 
   const logout = () => {
-    removeToken();
     setUser(null);
+    removeToken();
   };
 
   const value = {
     user,
+    loading,
     login,
     register,
     logout,
-    loading
   };
 
   return (
