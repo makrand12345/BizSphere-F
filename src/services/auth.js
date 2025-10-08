@@ -1,40 +1,34 @@
-import axios from 'axios';
 import { apiRequest } from './api';
 
-const API_URL = 'http://localhost:5000/api';
-
-// Create axios instance
-const api = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Auth functions
+// Auth functions using the apiRequest utility
 export const authAPI = {
   // Register user
   register: async (userData) => {
-    const response = await api.post('/auth/register', userData);
-    return response.data;
+    return await apiRequest('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+    });
   },
 
   // Login user
   login: async (email, password) => {
-    const response = await api.post('/auth/login', { email, password });
-    return response.data;
+    return await apiRequest('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    });
   },
 
   // Get current user
   getCurrentUser: async (token) => {
-    const response = await api.get('/auth/me', {
-      headers: { Authorization: `Bearer ${token}` }
+    return await apiRequest('/auth/me', {
+      headers: { 
+        Authorization: `Bearer ${token}` 
+      }
     });
-    return response.data;
   }
 };
 
-// Store token in localStorage
+// Token management
 export const setToken = (token) => {
   localStorage.setItem('bizsphere_token', token);
 };
@@ -46,19 +40,5 @@ export const getToken = () => {
 export const removeToken = () => {
   localStorage.removeItem('bizsphere_token');
 };
-
-export function register(data) {
-  return apiRequest('/auth/register', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
-
-export function login(data) {
-  return apiRequest('/auth/login', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-}
 
 export default api;
