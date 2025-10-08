@@ -40,5 +40,3 @@ export const getToken = () => {
 export const removeToken = () => {
   localStorage.removeItem('bizsphere_token');
 };
-
-export default api;

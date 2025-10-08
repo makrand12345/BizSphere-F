@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const API_BASE_URL = 'https://biz-sphere-b.vercel.app/api';
 
 export async function apiRequest(endpoint, options = {}) {
